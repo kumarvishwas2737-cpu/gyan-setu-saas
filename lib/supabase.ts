@@ -1,5 +1,4 @@
 import {createClient, SupabaseClient} from "@supabase/supabase-js";
-import {auth} from "@clerk/nextjs/server";
 
 let supabaseInstance: SupabaseClient | null = null;
 
@@ -13,11 +12,7 @@ export const createSupabaseClient = (): SupabaseClient | null => {
     }
 
     if (!supabaseInstance) {
-        supabaseInstance = createClient(supabaseUrl, supabaseAnonKey, {
-            async accessToken() {
-                return ((await auth()).getToken());
-            }
-        });
+        supabaseInstance = createClient(supabaseUrl, supabaseAnonKey);
     }
 
     return supabaseInstance;
