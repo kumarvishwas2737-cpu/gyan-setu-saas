@@ -4,6 +4,8 @@ import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import NavItems from "@/components/NavItems";
 
 const Navbar = () => {
+    const clerkConfigured = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
     return (
         <nav className="navbar">
             <Link href="/">
@@ -19,9 +21,15 @@ const Navbar = () => {
             <div className="flex items-center gap-8">
                 <NavItems />
                 <SignedOut>
-                    <SignInButton>
-                        <button className="btn-signin">Sign In</button>
-                    </SignInButton>
+                    {clerkConfigured ? (
+                        <SignInButton>
+                            <button className="btn-signin">Sign In</button>
+                        </SignInButton>
+                    ) : (
+                        <Link href="/sign-in">
+                            <button className="btn-signin">Sign In</button>
+                        </Link>
+                    )}
                 </SignedOut>
                 <SignedIn>
                     <UserButton />
