@@ -23,11 +23,11 @@ const Navbar = () => {
                 <SignedOut>
                     {clerkConfigured ? (
                         <SignInButton>
-                            <button className="btn-signin">Sign In</button>
+                            <button className="btn-signin">Login</button>
                         </SignInButton>
                     ) : (
                         <Link href="/sign-in">
-                            <button className="btn-signin">Sign In</button>
+                            <button className="btn-signin">Login</button>
                         </Link>
                     )}
                 </SignedOut>
