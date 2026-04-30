@@ -34,3 +34,4 @@ const CompanionsLibrary = async ({ searchParams }: SearchParams) => {
 }
 
 export default CompanionsLibrary
+// add a space
