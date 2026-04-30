@@ -2,12 +2,16 @@ import {createClient} from "@supabase/supabase-js";
 import {auth} from "@clerk/nextjs/server";
 
 export const createSupabaseClient = () => {
-    return createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
-            async accessToken() {
-                return ((await auth()).getToken());
-            }
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!url || !key) {
+        throw new Error('Supabase environment variables are not configured');
+    }
+
+    return createClient(url, key, {
+        async accessToken() {
+            return ((await auth()).getToken());
         }
-    )
+    })
 }
