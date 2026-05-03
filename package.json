@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node --test --experimental-strip-types lib/courses-query.test.ts lib/courses-ui-state.test.ts lib/analytics.test.ts app/courses/seo-validation.test.ts app/courses/courses-interaction.test.ts app/api/courses/route.contract.test.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.19.4",
